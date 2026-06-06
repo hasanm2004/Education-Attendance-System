@@ -13,19 +13,19 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-console.log("Auth JS Loaded Successfully");
+console.log("Auth JS Loaded");
 
 // =========================
-// SIGNUP FUNCTION
+// SIGNUP
 // =========================
 
 window.signup = async function () {
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const confirmPassword = document.getElementById("confirmPassword").value.trim();
-  const semester = document.getElementById("semester").value.trim();
+  const name = document.getElementById("name")?.value.trim();
+  const email = document.getElementById("email")?.value.trim();
+  const password = document.getElementById("password")?.value.trim();
+  const confirmPassword = document.getElementById("confirmPassword")?.value.trim();
+  const semester = document.getElementById("semester")?.value.trim();
 
   const role = localStorage.getItem("role") || "student";
 
@@ -42,82 +42,58 @@ window.signup = async function () {
   try {
 
     const userCredential =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      await createUserWithEmailAndPassword(auth, email, password);
 
     const user = userCredential.user;
 
-    await setDoc(
-      doc(db, "users", user.uid),
-      {
-        name,
-        email,
-        semester,
-        role,
-        createdAt: new Date().toISOString()
-      }
-    );
+    await setDoc(doc(db, "users", user.uid), {
+      name,
+      email,
+      semester,
+      role,
+      createdAt: new Date().toISOString()
+    });
 
     alert("Account Created Successfully ✅");
 
-    window.location.href = "login.html";
+    window.location.href = "/login.html";
 
   } catch (error) {
-
     console.error(error);
     alert(error.message);
-
   }
 };
 
 // =========================
-// LOGIN FUNCTION
+// LOGIN (FIXED)
 // =========================
 
-window.login = async function () {
+async function login() {
 
-  const email =
-    document.getElementById("email").value.trim();
-
-  const password =
-    document.getElementById("password").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-
-    alert("Please enter email and password");
+    alert("Enter email & password");
     return;
-
   }
 
   try {
 
     const userCredential =
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      await signInWithEmailAndPassword(auth, email, password);
 
-    const uid =
-      userCredential.user.uid;
+    const uid = userCredential.user.uid;
 
     const docSnap =
-      await getDoc(
-        doc(db, "users", uid)
-      );
+      await getDoc(doc(db, "users", uid));
 
     if (!docSnap.exists()) {
-
-      alert("User data not found");
+      alert("User not found");
       return;
-
     }
 
-    const userData =
-      docSnap.data();
+    const userData = docSnap.data();
 
     localStorage.setItem(
       "currentUser",
@@ -126,45 +102,34 @@ window.login = async function () {
 
     alert("Login Successful ✅");
 
-    // =====================
-    // ROLE BASED REDIRECT
-    // =====================
+    setTimeout(() => {
 
-    if (userData.role === "student") {
+      if (userData.role === "student") {
+        window.location.href = "/student/dashboard.html";
+      }
 
-      window.location.href =
-        "Student/dashboard.html";
+      else if (userData.role === "teacher") {
+        window.location.href = "/teacher/dashboard.html";
+      }
 
-    }
+      else if (userData.role === "admin") {
+        window.location.href = "/admin/dashboard.html";
+      }
 
-    else if (userData.role === "teacher") {
+      else {
+        alert("Invalid Role");
+      }
 
-      window.location.href =
-        "teacher/dashboard.html";
-
-    }
-
-    else if (userData.role === "admin") {
-
-      window.location.href =
-        "admin/dashboard.html";
-
-    }
-
-    else {
-
-      alert("Invalid Role");
-
-    }
+    }, 300);
 
   } catch (error) {
-
     console.error(error);
     alert(error.message);
-
   }
+}
 
-};
+// attach button safely
+document.getElementById("loginBtn")?.addEventListener("click", login);
 
 // =========================
 // FORGOT PASSWORD
@@ -172,32 +137,23 @@ window.login = async function () {
 
 window.resetPassword = async function () {
 
-  const email =
-    document.getElementById("email").value.trim();
+  const email = document.getElementById("email").value.trim();
 
   if (!email) {
-
     alert("Enter email first");
     return;
-
   }
 
   try {
 
-    await sendPasswordResetEmail(
-      auth,
-      email
-    );
+    await sendPasswordResetEmail(auth, email);
 
-    alert("Password reset email sent ✅");
+    alert("Reset email sent ✅");
 
   } catch (error) {
-
     console.error(error);
     alert(error.message);
-
   }
-
 };
 
 // =========================
@@ -206,22 +162,9 @@ window.resetPassword = async function () {
 
 window.logout = async function () {
 
-  try {
+  await signOut(auth);
 
-    await signOut(auth);
+  localStorage.removeItem("currentUser");
 
-    localStorage.removeItem(
-      "currentUser"
-    );
-
-    window.location.href =
-      "../login.html";
-
-  } catch (error) {
-
-    console.error(error);
-    alert(error.message);
-
-  }
-
+  window.location.href = "/login.html";
 };
