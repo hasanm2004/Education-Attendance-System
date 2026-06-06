@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #333;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1, h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* =========================
+   BUTTONS (MAIN)
+========================= */
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* =========================
+   LINKS / MENU BUTTONS
+========================= */
+
+.btn {
+  display: block;
+  margin: 15px auto;
+  padding: 12px;
+  width: 80%;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+/* =========================
+   CARD DESIGN (DASHBOARD)
+========================= */
+
+.card {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   VIDEO CAMERA
+========================= */
+
+video {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  background: #121212;
+  color: #ffffff;
+}
+
+.dark .card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark input {
+  background: #1e1e1e;
+  color: white;
+  border: 1px solid #333;
+}
+
+.dark button {
+  background: #2563eb;
+}
+
+.dark button:hover {
+  background: #1d4ed8;
+}
+
+/* =========================
+   SMALL ANIMATIONS
+========================= */
+
+button, .btn, .card {
+  transition: all 0.3s ease;
+}

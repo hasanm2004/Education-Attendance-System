@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Education Attendance System</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f6fb;
+      font-family: Arial;
+    }
+
+    .box {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      width: 90px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    .sub {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .role {
+      font-size: 18px;
+      margin: 20px 0 10px 0;
+      font-weight: bold;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+      background: #007bff;
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+  <!-- LOGO -->
+  <img class="logo"
+    src="image/Universityofkarachilogo.png"
+
+  <!-- TITLE -->
+  <h1>Education Attendance System</h1>
+
+  <div class="sub">
+    Department of Education <br>
+    University of Karachi
+  </div>
+
+  <!-- QUESTION -->
+  <div class="role">
+    Who are you?
+  </div>
+
+  <!-- BUTTONS -->
+  <button onclick="goSignup('teacher')">
+    👨‍🏫 Teacher
+  </button>
+
+  <button onclick="goSignup('student')">
+    🎓 Student
+  </button>
+
+</div>
+
+<script>
+function goSignup(role) {
+  localStorage.setItem("role", role);
+  window.location.href = "signup.html";
+}
+</script>
+
+</body>
+</html>

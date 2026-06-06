@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR Generator</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head>
+<body>
+
+<h2>Attendance QR</h2>
+
+<div id="qrcode"></div>
+
+<script>
+
+new QRCode(
+  document.getElementById("qrcode"),
+  "ATTENDANCE-2026"
+);
+
+</script>
+
+</body>
+</html>
