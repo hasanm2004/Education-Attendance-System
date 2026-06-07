@@ -29,3 +29,9 @@ window.scanQR = function () {
     }
   );
 };
+
+function scanQR(){
+
+ alert("QR Attendance Coming Soon");
+
+}

@@ -125,37 +125,35 @@ window.login = async function () {
     alert("Login Successful ✅");
 
     // Role Based Redirect
+     
+     // Role Based Redirect (FIXED)
 
-    if (userData.role === "student") {
+const role = userData.role?.toLowerCase().trim();
 
-      window.location.href =
-        "student/dashboard.html";
-
-    }
-          if (userData.role === "student") {
+if (role === "student") {
   window.location.href = "/student/dashboard.html";
 }
 
-else if (userData.role === "teacher") {
+else if (role === "teacher") {
   window.location.href = "/teacher/dashboard.html";
 }
 
-else if (userData.role === "admin") {
+else if (role === "admin") {
   window.location.href = "/admin/dashboard.html";
 }
-    
-    else {
 
-      alert("Invalid Role Found");
+else {
+  alert("Invalid Role Found");
+}
 
-    }
 
-  } catch (error) {
+} catch (error) {
 
     console.error(error);
     alert(error.message);
 
   }
+  
 };
 
 // =========================
@@ -235,6 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       window.login
     );
-  }
 
+} 
 });
