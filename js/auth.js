@@ -132,14 +132,16 @@ window.login = async function () {
         "student/dashboard.html";
 
     }
-    else if (userData.role === "teacher") {
+          if (userData.role === "student") {
+  window.location.href = "/student/dashboard.html";
+}
 
-      window.location.href =
-        "teacher/dashboard.html";
+else if (userData.role === "teacher") {
+  window.location.href = "/teacher/dashboard.html";
+}
 
-    }
-         else if (userData.role === "admin") {
-    window.location.href = "/admin/dashboard.html";
+else if (userData.role === "admin") {
+  window.location.href = "/admin/dashboard.html";
 }
     
     else {
