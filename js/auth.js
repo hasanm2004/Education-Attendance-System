@@ -138,12 +138,10 @@ window.login = async function () {
         "teacher/dashboard.html";
 
     }
-    else if (userData.role === "admin") {
-
-      window.location.href =
-        "admin/dashboard.html";
-
-    }
+         else if (userData.role === "admin") {
+    window.location.href = "/admin/dashboard.html";
+}
+    
     else {
 
       alert("Invalid Role Found");
